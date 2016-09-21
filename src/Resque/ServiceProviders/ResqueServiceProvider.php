@@ -20,18 +20,21 @@ class ResqueServiceProvider extends QueueServiceProvider {
 		parent::registerConnectors($manager);
 		$this->registerResqueConnector($manager);
 	}
+    
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->registerCommand();
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function boot()
-	{
-		parent::boot();
+        parent::register();
+    }
 
-		$this->registerCommand();
-	}
 
-	/**
+    /**
 	 * Register the Resque queue connector.
 	 *
 	 * @param \Illuminate\Queue\QueueManager $manager
